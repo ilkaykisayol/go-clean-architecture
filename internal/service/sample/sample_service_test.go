@@ -18,16 +18,15 @@ import (
 
 type SampleServiceTestSuite struct {
 	suite.Suite
-	sampleService                  ISampleService
-	mockEnvironment                *env.MockIEnvironment
-	mockLogger                     *logger.MockILogger
-	mockValidator                  *validator.MockIValidator
-	mockCacher                     *cacher.MockICacher
-	mockSampleProxy                *sampleProxy.MockISampleProxy
-	mockSampleDb                   *sampleDb.MockISampleDb
-	mockSamplePubSubPublisher      *samplePubSubPublisher.MockISamplePublisher
-	mockSamplePubSubProtoPublisher *samplePubSubPublisher.MockISampleProtoPublisher
-	mockSampleXmlProxy             *sampleProxy.MockISampleXmlProxy
+	sampleService             ISampleService
+	mockEnvironment           *env.MockIEnvironment
+	mockLogger                *logger.MockILogger
+	mockValidator             *validator.MockIValidator
+	mockCacher                *cacher.MockICacher
+	mockSampleProxy           *sampleProxy.MockISampleProxy
+	mockSampleDb              *sampleDb.MockISampleDb
+	mockSamplePubSubPublisher *samplePubSubPublisher.MockISamplePublisher
+	mockSampleXmlProxy        *sampleProxy.MockISampleXmlProxy
 }
 
 // Run suite.
@@ -49,10 +48,9 @@ func (s *SampleServiceTestSuite) SetupTest() {
 	s.mockSampleProxy = sampleProxy.NewMockISampleProxy(ctrl)
 	s.mockSampleDb = sampleDb.NewMockISampleDb(ctrl)
 	s.mockSamplePubSubPublisher = samplePubSubPublisher.NewMockISamplePublisher(ctrl)
-	s.mockSamplePubSubProtoPublisher = samplePubSubPublisher.NewMockISampleProtoPublisher(ctrl)
 	s.mockSampleXmlProxy = sampleProxy.NewMockISampleXmlProxy(ctrl)
 
-	s.sampleService = NewSampleService(s.mockEnvironment, s.mockLogger, s.mockValidator, s.mockCacher, s.mockSampleProxy, s.mockSampleDb, s.mockSamplePubSubPublisher, s.mockSamplePubSubProtoPublisher, s.mockSampleXmlProxy)
+	s.sampleService = NewSampleService(s.mockEnvironment, s.mockLogger, s.mockValidator, s.mockCacher, s.mockSampleProxy, s.mockSampleDb, s.mockSamplePubSubPublisher, s.mockSampleXmlProxy)
 }
 
 // Runs after each test in the suite.
