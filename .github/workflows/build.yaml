@@ -1,0 +1,45 @@
+name: Go Clean Architecture CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - staging*
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ['1.17']
+    env:
+      GOPRIVATE: github.com/ilkaykisayol
+      GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+    name: Build & Test
+
+    steps:
+      - name: Checkout the current branch
+        uses: actions/checkout@v2
+
+      - name: Setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Print go version
+        run: go version
+
+      - name: Install swag bin
+        run: go install github.com/swaggo/swag/cmd/swag@v1.8.1
+
+      - name: Init swagger
+        run: swag init
+
+      - name: Register git url
+        run: git config --global url.https://$GH_ACCESS_TOKEN@github.com/.insteadOf https://github.com/
+
+      - name: Build
+        run: go build
+
+      - name: Test
+        run: go test -v -cover ./internal/...
