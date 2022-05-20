@@ -102,5 +102,5 @@ These files are ignored to not track changes.
 ### Structured Logging
 Uber's zap package is used.
 
-[zap GitHub repository](https://github.com/uber-go/zap)  
+[zap GitHub repository](https://github.com/uber-go/zap)   
 [zap godoc page](https://pkg.go.dev/go.uber.org/zap)
