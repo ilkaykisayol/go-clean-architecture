@@ -1,7 +1,7 @@
 ## Go-Clean-Architecture
 
 ### Docker setup
-#### Build Image
+#### Build Image 
 Here is an example:
 ```bash
 $ docker build --build-arg GITHUB_USERNAME=dummy_username --build-arg GITHUB_TOKEN=ghp_DuMmyToKen -t go-clean-architecture:latest .
